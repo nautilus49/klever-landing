@@ -2,33 +2,21 @@ import { motion } from 'framer-motion'
 import { User, Heart, Gift } from 'lucide-react'
 
 const audiences = [
-  {
-    icon: User,
-    title: 'Для себя',
-    text: 'Работаете допоздна, гуляете в одиночестве или путешествуете — спокойствие, что помощь на расстоянии нажатия.',
-  },
-  {
-    icon: Heart,
-    title: 'Для близких',
-    text: 'Родители в другом городе, дети в школе, партнёр в командировке — вы всегда в курсе, если что-то случилось.',
-  },
-  {
-    icon: Gift,
-    title: 'В подарок',
-    text: 'Практичный и заботливый подарок. Показывает, что вы думаете о безопасности того, кто вам дорог.',
-  },
+  { icon: User, title: 'Для себя', text: 'Работаете допоздна, гуляете в одиночестве или путешествуете — спокойствие, что помощь на расстоянии нажатия.' },
+  { icon: Heart, title: 'Для близких', text: 'Родители в другом городе, дети в школе, партнёр в командировке — вы всегда в курсе, если что-то случилось.' },
+  { icon: Gift, title: 'В подарок', text: 'Практичный и заботливый подарок. Показывает, что вы думаете о безопасности того, кто вам дорог.' },
 ]
 
 export default function TargetAudience() {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-charcoal">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-bg">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-2xl sm:text-3xl font-semibold text-center text-cream mb-4 font-display"
+          className="text-2xl sm:text-3xl font-semibold text-center text-text mb-4 font-display"
         >
           Кому подойдёт
         </motion.h2>
@@ -37,9 +25,9 @@ export default function TargetAudience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-[#a3a3a3] text-center max-w-xl mx-auto mb-12"
+          className="text-text-muted text-center max-w-xl mx-auto mb-12"
         >
-          Klever создан для тех, кто ценит спокойствие и близких
+          Клевер создан для тех, кто ценит спокойствие и близких
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -50,13 +38,13 @@ export default function TargetAudience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="p-8 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/5 hover:border-gold/20 transition-all duration-300 text-center"
+              className="p-8 rounded-2xl bg-surface border border-border hover:border-accent/40 transition-all duration-300 text-center shadow-sm"
             >
-              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-5">
-                <item.icon className="w-6 h-6 text-gold" strokeWidth={1.5} />
+              <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center mx-auto mb-5">
+                <item.icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
               </div>
-              <h3 className="text-cream font-medium mb-3 font-display">{item.title}</h3>
-              <p className="text-[#a3a3a3] text-sm leading-relaxed">{item.text}</p>
+              <h3 className="text-text font-medium mb-3 font-display">{item.title}</h3>
+              <p className="text-text-muted text-sm leading-relaxed">{item.text}</p>
             </motion.div>
           ))}
         </div>

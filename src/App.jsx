@@ -7,7 +7,6 @@ import HowItWorks from './components/HowItWorks'
 import Features from './components/Features'
 import TargetAudience from './components/TargetAudience'
 import TrustStats from './components/TrustStats'
-import ProductGallery from './components/ProductGallery'
 import ProductShowcase from './components/ProductShowcase'
 import FAQ from './components/FAQ'
 import FinalCTA from './components/FinalCTA'
@@ -31,7 +30,6 @@ function App() {
         <Features />
         <TargetAudience />
         <TrustStats />
-        <ProductGallery />
         <ProductShowcase onOrder={openModal} />
         <FAQ />
         <FinalCTA onOrder={openModal} />

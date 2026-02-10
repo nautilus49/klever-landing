@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
     steps:
       - uses: actions/checkout@v4
 
@@ -24,10 +27,21 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: package-lock.json
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - run: npm run build
+      - name: Build
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          echo "=== Build output ==="
+          ls -la dist/
+          ls -la dist/assets/ 2>/dev/null || true
+          echo "=== index.html preview ==="
+          head -20 dist/index.html
 
       - uses: actions/upload-pages-artifact@v3
         with:
