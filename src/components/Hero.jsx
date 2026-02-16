@@ -22,15 +22,6 @@ export default function Hero({ onOrder }) {
         transition={{ duration: 0.6 }}
         className="relative text-center max-w-4xl mx-auto"
       >
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-surface/70 px-4 py-1.5 text-[13px] sm:text-xs font-medium uppercase tracking-[0.15em] sm:tracking-[0.2em] text-accent backdrop-blur leading-tight"
-        >
-          Российский стартап · первая партия
-        </motion.p>
-
         <h1 className="mt-5 text-[28px] leading-[1.15] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[52px] lg:leading-[1.1] font-semibold text-text font-display tracking-tight text-center">
           {headlineWords.map((line, li) => (
             <span key={li} className="block sm:inline">
@@ -60,7 +51,7 @@ export default function Hero({ onOrder }) {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-5 sm:mt-4 text-[15px] leading-[1.6] sm:text-base sm:leading-[1.65] lg:text-lg lg:leading-[1.7] text-text-muted max-w-xl mx-auto"
         >
-          Минималистичный кулон с кнопкой SOS: одно касание — и близкие знают, что нужна помощь.
+          Простой кулон с кнопкой SOS. Одно касание — родные сразу получат сигнал и вашу геолокацию.
         </motion.p>
 
         <motion.div
@@ -94,7 +85,7 @@ export default function Hero({ onOrder }) {
           transition={{ duration: 0.5, delay: 0.45 }}
           className="mt-6 text-[13px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.22em] text-text-muted/70 leading-relaxed"
         >
-          Российский бренд, делаем и собираем в России
+          Делаем в России
         </motion.div>
 
         <motion.div

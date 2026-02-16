@@ -3,8 +3,8 @@ import { Moon, GraduationCap, PhoneOff } from 'lucide-react'
 
 const problems = [
   { icon: Moon, text: 'Поздно возвращаетесь домой?' },
-  { icon: GraduationCap, text: 'Волнуетесь за ребёнка в школе?' },
-  { icon: PhoneOff, text: 'Нет времени достать телефон?' },
+  { icon: GraduationCap, text: 'Ребёнок в школе, а вы переживаете?' },
+  { icon: PhoneOff, text: 'Телефон в сумке, а достать некогда?' },
 ]
 
 export default function ProblemSection() {

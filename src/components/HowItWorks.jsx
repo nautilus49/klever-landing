@@ -6,19 +6,19 @@ const steps = [
     icon: CircleDot,
     num: '01',
     title: 'Нажмите на кулон',
-    desc: 'Выглядит как поправка украшения. Никто не заметит.',
+    desc: 'Нажатие похоже на то, как поправляют цепочку. Со стороны не понять, что вы вызываете помощь.',
   },
   {
     icon: Send,
     num: '02',
-    title: 'Кулон шлёт команду на телефон',
-    desc: 'Через Bluetooth — телефон может быть в сумке или кармане.',
+    title: 'Кулон по Bluetooth отправляет сигнал на телефон',
+    desc: 'Телефон может лежать в сумке или кармане.',
   },
   {
     icon: Bell,
     num: '03',
-    title: 'Телефон рассылает близким',
-    desc: 'Сообщение в Telegram с вашим местоположением.',
+    title: 'Телефон присылает в Telegram вашим контактам',
+    desc: 'Сообщение с вашей геолокацией.',
   },
 ]
 
@@ -68,7 +68,7 @@ export default function HowItWorks() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="text-text-muted text-center max-w-lg mx-auto mb-4 text-[14px] sm:text-sm sm:leading-[1.7]"
         >
-          Три шага — и близкие знают, что нужна помощь
+          Просто нажмите — и родные уже в курсе
         </motion.p>
 
         <motion.div

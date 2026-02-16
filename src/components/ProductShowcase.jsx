@@ -10,7 +10,7 @@ const includes = [
 const extras = [
   { icon: Truck, text: 'Доставка по всей России' },
   { icon: Shield, text: 'Гарантия 1 год' },
-  { icon: Package, text: 'Стильная упаковка в комплекте' },
+  { icon: Package, text: 'Красивая подарочная упаковка' },
 ]
 
 export default function ProductShowcase({ onOrder }) {
@@ -57,7 +57,7 @@ export default function ProductShowcase({ onOrder }) {
 
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-[13px] sm:text-xs font-medium uppercase tracking-[0.15em] sm:tracking-[0.2em] text-accent mb-4 leading-tight">
-                Первая партия · ограниченный тираж
+                Первая партия
               </div>
               <p className="text-[36px] leading-[1.1] sm:text-4xl sm:leading-[1.15] lg:text-5xl lg:leading-[1.1] font-semibold text-accent mb-6 font-display">
                 4 500 ₽

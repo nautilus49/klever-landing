@@ -4,7 +4,7 @@ import { motion, useInView, animate } from 'framer-motion'
 const stats = [
   { value: 1, fmt: (n) => `${Math.round(n)} год`, label: 'автономной работы' },
   { value: 2, fmt: (n) => `< ${Math.round(n)} сек`, label: 'до отправки сигнала' },
-  { value: 24, fmt: (n) => `${Math.round(n)}/7`, label: 'работа приложения' },
+  { value: 24, fmt: (n) => `${Math.round(n)}/7`, label: 'приложение работает' },
 ]
 
 function CountUp({ to, format }) {

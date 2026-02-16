@@ -84,8 +84,8 @@ export default function OrderModal({ isOpen, onClose }) {
                   Упс! Первая партия распродана
                 </h3>
                 <p className="text-text-muted mb-6 leading-relaxed text-[14px] sm:text-sm">
-                  Спрос оказался выше, чем мы ожидали. Оставьте контакты, чтобы попасть в список
-                  ожидания и получить приоритет на следующую партию.
+                  Первая партия разлетелась быстрее, чем думали. Оставьте контакты — сообщим, когда
+                  появится следующая партия, и дадим приоритет в заказе.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">

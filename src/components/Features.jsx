@@ -20,8 +20,8 @@ const item = {
 const features = [
   {
     icon: Sparkles,
-    title: 'Украшение с характером',
-    text: 'Премиальный вид. Никто не догадается, что это гаджет.',
+    title: 'Просто красивое украшение',
+    text: 'Стильно выглядит. Сложно догадаться, что это не просто кулон.',
   },
   {
     icon: Smartphone,
@@ -35,8 +35,8 @@ const features = [
   },
   {
     icon: Heart,
-    title: 'Подарок с заботой',
-    text: 'Способ сказать «я рядом» на расстоянии.',
+    title: 'Подарок, который говорит о заботе',
+    text: 'Как сказать «я рядом», когда вы далеко.',
   },
 ]
 
@@ -60,7 +60,7 @@ export default function Features() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="text-text-muted text-center max-w-lg mx-auto mb-14 text-[14px] sm:text-sm sm:leading-[1.7]"
         >
-          Электроника спрятана внутри. Снаружи — только стиль.
+          С виду обычное украшение. Внутри — всё, что нужно для SOS.
         </motion.p>
 
         <motion.div
