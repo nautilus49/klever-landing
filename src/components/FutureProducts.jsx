@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { KeyRound, Link as LinkIcon, X } from 'lucide-react'
+import { KeyRound, Link as LinkIcon, X, Loader2, AlertCircle } from 'lucide-react'
+import { subscribeNotification } from '../services/api'
 
 const items = [
   {
@@ -21,6 +22,8 @@ export default function FutureProducts() {
   const [name, setName] = useState('')
   const [contact, setContact] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   const openModal = (productLabel) => {
     setSelectedProduct(productLabel)
@@ -28,6 +31,7 @@ export default function FutureProducts() {
     setName('')
     setContact('')
     setIsSuccess(false)
+    setError(null)
   }
 
   const closeModal = () => {
@@ -36,15 +40,29 @@ export default function FutureProducts() {
     setName('')
     setContact('')
     setIsSuccess(false)
+    setIsSubmitting(false)
+    setError(null)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log({ product: selectedProduct, name, contact })
-    setIsSuccess(true)
-    setTimeout(() => {
-      closeModal()
-    }, 2000)
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      await subscribeNotification({
+        name,
+        contact,
+        product_type: selectedProduct,
+      })
+      setIsSuccess(true)
+      setTimeout(() => {
+        closeModal()
+      }, 2000)
+    } catch (err) {
+      setError(err.message || 'Произошла ошибка при отправке данных')
+      setIsSubmitting(false)
+    }
   }
 
   const handleBackdropClick = (e) => {
@@ -197,13 +215,24 @@ export default function FutureProducts() {
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-sm"
+                      >
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        <span>{error}</span>
+                      </motion.div>
+                    )}
                     <input
                       type="text"
                       placeholder="Имя"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                     <input
                       type="text"
@@ -211,13 +240,22 @@ export default function FutureProducts() {
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                     <button
                       type="submit"
-                      className="w-full py-3 rounded-xl bg-accent text-white font-medium hover:bg-accent-muted transition-colors duration-300"
+                      disabled={isSubmitting}
+                      className="w-full py-3 rounded-xl bg-accent text-white font-medium hover:bg-accent-muted transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                      Уведомить меня
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Отправка...
+                        </>
+                      ) : (
+                        'Уведомить меня'
+                      )}
                     </button>
                   </form>
                 </>
