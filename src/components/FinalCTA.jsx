@@ -14,7 +14,7 @@ export default function FinalCTA({ onOrder }) {
           Готовы купить?
         </h2>
         <p className="text-text-muted mb-8 text-[14px] leading-[1.65] sm:text-sm sm:leading-[1.7]">
-          Первая партия — ограниченный тираж.
+          Первая партия — ограниченный тираж. Подарок с заботой для близкого человека.
         </p>
         <motion.button
           onClick={onOrder}

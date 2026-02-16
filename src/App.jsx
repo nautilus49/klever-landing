@@ -3,14 +3,15 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LifestyleSection from './components/LifestyleSection'
 import ProblemSection from './components/ProblemSection'
+import VisualDivider from './components/VisualDivider'
 import HowItWorks from './components/HowItWorks'
 import Features from './components/Features'
-import TargetAudience from './components/TargetAudience'
 import TrustStats from './components/TrustStats'
 import ProductShowcase from './components/ProductShowcase'
 import FutureProducts from './components/FutureProducts'
 import FAQ from './components/FAQ'
 import FinalCTA from './components/FinalCTA'
+import SocialLinks from './components/SocialLinks'
 import Footer from './components/Footer'
 import OrderModal from './components/OrderModal'
 
@@ -51,14 +52,17 @@ function App() {
         <Hero onOrder={openModal} />
         <LifestyleSection />
         <ProblemSection />
+        <VisualDivider />
         <HowItWorks />
+        <VisualDivider />
         <Features />
-        <TargetAudience />
         <TrustStats />
-        <FutureProducts />
+        <VisualDivider />
         <ProductShowcase onOrder={openModal} />
+        <FutureProducts />
         <FAQ />
         <FinalCTA onOrder={openModal} />
+        <SocialLinks />
         <Footer />
       </main>
       <OrderModal isOpen={isModalOpen} onClose={closeModal} />

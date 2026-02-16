@@ -40,7 +40,7 @@ export default function ProductShowcase({ onOrder }) {
             </div>
 
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-[11px] sm:text-xs font-medium uppercase tracking-[0.15em] sm:tracking-[0.2em] text-accent mb-4 leading-tight">
+              <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-[13px] sm:text-xs font-medium uppercase tracking-[0.15em] sm:tracking-[0.2em] text-accent mb-4 leading-tight">
                 Первая партия · ограниченный тираж
               </div>
               <p className="text-[36px] leading-[1.1] sm:text-4xl sm:leading-[1.15] lg:text-5xl lg:leading-[1.1] font-semibold text-accent mb-6 font-display">
@@ -57,7 +57,7 @@ export default function ProductShowcase({ onOrder }) {
                 ))}
               </ul>
 
-              <div className="flex flex-wrap gap-4 sm:gap-6 mb-8 text-[12px] sm:text-xs leading-relaxed text-text-muted">
+              <div className="flex flex-wrap gap-4 sm:gap-6 mb-8 text-[14px] sm:text-xs leading-relaxed text-text-muted">
                 {extras.map((item, i) => (
                   <span key={i} className="flex items-center gap-2">
                     <item.icon className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />

@@ -67,7 +67,7 @@ export default function OrderModal({ isOpen, onClose }) {
                 className="text-center py-12"
               >
                 <Loader2 className="w-8 h-8 text-accent animate-spin mx-auto mb-4" />
-                <p className="text-text-muted text-sm">Проверяем наличие на складе...</p>
+                <p className="text-text-muted text-[14px] sm:text-sm">Проверяем наличие на складе...</p>
               </motion.div>
             ) : isSuccess ? (
               <motion.div
@@ -76,14 +76,14 @@ export default function OrderModal({ isOpen, onClose }) {
                 className="text-center py-8"
               >
                 <p className="text-xl font-semibold text-accent mb-2 font-display">Спасибо!</p>
-                <p className="text-text-muted">Мы напишем вам первым</p>
+                <p className="text-text-muted text-[14px] sm:text-base">Мы напишем вам первым</p>
               </motion.div>
             ) : showForm ? (
               <>
                 <h3 className="text-xl sm:text-2xl font-semibold text-text mb-2 font-display">
                   Упс! Первая партия распродана
                 </h3>
-                <p className="text-text-muted mb-6 leading-relaxed text-sm">
+                <p className="text-text-muted mb-6 leading-relaxed text-[14px] sm:text-sm">
                   Спрос оказался выше, чем мы ожидали. Оставьте контакты, чтобы попасть в список
                   ожидания и получить приоритет на следующую партию.
                 </p>

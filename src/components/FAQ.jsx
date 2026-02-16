@@ -68,7 +68,7 @@ export default function FAQ() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden border-t border-border"
                   >
-                    <p className="px-5 py-4 text-text-muted text-[13px] leading-[1.65] sm:text-sm sm:leading-relaxed">{item.a}</p>
+                    <p className="px-5 py-4 text-text-muted text-[14px] leading-[1.65] sm:text-sm sm:leading-relaxed">{item.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>

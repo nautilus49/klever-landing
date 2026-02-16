@@ -23,14 +23,14 @@ export default function Hero({ onOrder }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-surface/70 px-4 py-1.5 text-[11px] sm:text-xs font-medium uppercase tracking-[0.15em] sm:tracking-[0.2em] text-accent backdrop-blur leading-tight"
+          className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-surface/70 px-4 py-1.5 text-[13px] sm:text-xs font-medium uppercase tracking-[0.15em] sm:tracking-[0.2em] text-accent backdrop-blur leading-tight"
         >
           Российский стартап · первая партия
         </motion.p>
 
         <h1 className="mt-5 text-[28px] leading-[1.15] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[52px] lg:leading-[1.1] font-semibold text-text font-display tracking-tight">
-          Клевер — украшение,
-          <br className="hidden sm:inline" /> которое может спасти
+          Клевер — стиль
+          <br className="hidden sm:inline" /> и безопасность
         </h1>
 
         <motion.p
@@ -71,7 +71,7 @@ export default function Hero({ onOrder }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.45 }}
-          className="mt-6 text-[11px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.22em] text-text-muted/70 leading-relaxed"
+          className="mt-6 text-[13px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.22em] text-text-muted/70 leading-relaxed"
         >
           Российский бренд, делаем и собираем в России
         </motion.div>
@@ -80,7 +80,7 @@ export default function Hero({ onOrder }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.55 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-[13px] sm:text-sm text-text-muted leading-relaxed"
+          className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-[14px] sm:text-sm text-text-muted leading-relaxed"
         >
           <span className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-accent" strokeWidth={1.5} />

@@ -73,13 +73,13 @@ export default function FutureProducts() {
 
           <div className="relative flex flex-col md:flex-row items-start md:items-center gap-10">
             <div className="flex-1">
-              <p className="text-xs uppercase tracking-[0.22em] text-text-muted/70 mb-3">
+              <p className="text-[13px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.22em] text-text-muted/70 mb-3 leading-relaxed">
                 Ассортимент будет расширяться
               </p>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-text mb-4 font-display">
+              <h2 className="text-[24px] leading-[1.3] sm:text-2xl sm:leading-[1.35] lg:text-3xl lg:leading-[1.3] font-semibold text-text mb-4 font-display">
                 Сейчас кулон. Потом — брелок и браслет
               </h2>
-              <p className="text-sm sm:text-base text-text-muted max-w-lg">
+              <p className="text-[14px] leading-[1.65] sm:text-sm sm:leading-[1.7] lg:text-base lg:leading-[1.75] text-text-muted max-w-lg">
                 Мы стартуем с кулона на цепочке. Уже проектируем версии в виде брелока и браслета на руку, чтобы
                 Клевер можно было подобрать под любой стиль.
               </p>
@@ -93,12 +93,12 @@ export default function FutureProducts() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="relative overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-br from-accent/12 via-accent-muted/10 to-transparent px-5 py-6 backdrop-blur-sm flex flex-col h-full"
               >
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-surface/70 px-3 py-1 text-xs text-accent font-medium">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-surface/70 px-3 py-1 text-[13px] sm:text-xs text-accent font-medium">
                   <KeyRound className="w-3.5 h-3.5 text-accent" strokeWidth={1.7} />
                   Скоро в продаже
                 </div>
-                <p className="text-sm font-medium text-text mb-2">{items[0].label}</p>
-                <p className="text-xs text-text-muted leading-relaxed mb-4 flex-grow">{items[0].desc}</p>
+                <p className="text-[15px] sm:text-sm font-medium text-text mb-2">{items[0].label}</p>
+                <p className="text-[14px] sm:text-xs text-text-muted leading-[1.6] sm:leading-relaxed mb-4 flex-grow">{items[0].desc}</p>
                 <div className="mt-4 h-20 rounded-xl bg-gradient-to-br from-accent/20 via-accent-muted/15 to-transparent blur-xl opacity-60 dark:opacity-50 flex items-center justify-center mb-4">
                   <KeyRound className="w-8 h-8 text-accent/40" strokeWidth={1.5} />
                 </div>
@@ -106,7 +106,7 @@ export default function FutureProducts() {
                   onClick={() => openModal(items[0].label)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-4 py-2.5 rounded-xl border border-accent/50 bg-accent/10 text-xs font-medium text-accent hover:bg-accent/20 transition-colors duration-300 mt-auto"
+                  className="w-full px-4 py-2.5 rounded-xl border border-accent/50 bg-accent/10 text-[14px] sm:text-xs font-medium text-accent hover:bg-accent/20 transition-colors duration-300 mt-auto"
                 >
                   Когда поступит?
                 </motion.button>
@@ -119,12 +119,12 @@ export default function FutureProducts() {
                 transition={{ duration: 0.6, delay: 0.16 }}
                 className="relative overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-br from-accent-muted/15 via-accent/10 to-transparent px-5 py-6 backdrop-blur-sm flex flex-col h-full"
               >
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-surface/70 px-3 py-1 text-xs text-accent font-medium">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-surface/70 px-3 py-1 text-[13px] sm:text-xs text-accent font-medium">
                   <LinkIcon className="w-3.5 h-3.5 text-accent" strokeWidth={1.7} />
                   Скоро в продаже
                 </div>
-                <p className="text-sm font-medium text-text mb-2">{items[1].label}</p>
-                <p className="text-xs text-text-muted leading-relaxed mb-4 flex-grow">{items[1].desc}</p>
+                <p className="text-[15px] sm:text-sm font-medium text-text mb-2">{items[1].label}</p>
+                <p className="text-[14px] sm:text-xs text-text-muted leading-[1.6] sm:leading-relaxed mb-4 flex-grow">{items[1].desc}</p>
                 <div className="mt-4 h-20 rounded-xl bg-gradient-to-br from-accent-muted/20 via-accent/15 to-transparent blur-xl opacity-60 dark:opacity-50 flex items-center justify-center mb-4">
                   <LinkIcon className="w-8 h-8 text-accent/40" strokeWidth={1.5} />
                 </div>
@@ -132,7 +132,7 @@ export default function FutureProducts() {
                   onClick={() => openModal(items[1].label)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-4 py-2.5 rounded-xl border border-accent/50 bg-accent/10 text-xs font-medium text-accent hover:bg-accent/20 transition-colors duration-300 mt-auto"
+                  className="w-full px-4 py-2.5 rounded-xl border border-accent/50 bg-accent/10 text-[14px] sm:text-xs font-medium text-accent hover:bg-accent/20 transition-colors duration-300 mt-auto"
                 >
                   Когда поступит?
                 </motion.button>
@@ -166,7 +166,7 @@ export default function FutureProducts() {
                   className="text-center py-8"
                 >
                   <p className="text-xl font-semibold text-accent mb-2 font-display">Спасибо!</p>
-                  <p className="text-text-muted text-sm">
+                  <p className="text-text-muted text-[14px] sm:text-sm">
                     Мы уведомим вас заранее перед началом продаж {selectedProduct?.toLowerCase()}.
                   </p>
                 </motion.div>
@@ -184,7 +184,7 @@ export default function FutureProducts() {
                       <X className="w-5 h-5 text-text-muted" />
                     </button>
                   </div>
-                  <p className="text-text-muted mb-6 leading-relaxed text-sm">
+                  <p className="text-text-muted mb-6 leading-relaxed text-[14px] sm:text-sm">
                     Вы можете оставить свои контакты, и мы заранее перед началом продаж{' '}
                     {selectedProduct?.toLowerCase()} уведомим вас.
                   </p>
