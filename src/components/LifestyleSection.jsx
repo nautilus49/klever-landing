@@ -10,13 +10,18 @@ export default function LifestyleSection() {
         transition={{ duration: 0.6 }}
         className="w-full max-w-5xl mx-auto"
       >
-        <div className="w-full rounded-2xl overflow-hidden border border-border mx-auto max-w-md shadow-sm">
+        <motion.div
+          whileInView={{ scale: [1, 1.02, 1] }}
+          viewport={{ once: true }}
+          transition={{ duration: 2, ease: 'easeInOut' }}
+          className="w-full rounded-2xl overflow-hidden border border-border/80 mx-auto max-w-md shadow-lg shadow-black/5 dark:shadow-black/40"
+        >
           <img
             src={`${import.meta.env.BASE_URL}images/klever-on-girl.png`}
             alt="Кулон Клевер на девушке"
             className="w-full h-auto object-contain"
           />
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   )

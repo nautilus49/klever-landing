@@ -16,22 +16,25 @@ export default function ProblemSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-2xl sm:text-3xl font-semibold text-center text-text mb-12 font-display"
+          className="text-[24px] leading-[1.3] sm:text-2xl sm:leading-[1.35] lg:text-3xl lg:leading-[1.3] font-semibold text-center text-text mb-10 font-display"
         >
-          Узнаёте себя?
+          Знакомая ситуация?
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {problems.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="p-8 sm:p-10 rounded-2xl bg-surface border border-border hover:border-accent/40 transition-all duration-300 shadow-sm"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-surface/90 p-7 sm:p-8 shadow-sm shadow-black/5 dark:shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
             >
-              <item.icon className="w-11 h-11 text-accent mb-5" strokeWidth={1.5} />
-              <p className="text-lg text-text-muted">{item.text}</p>
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-accent/8 via-transparent to-accent-muted/10" />
+              <div className="relative">
+                <item.icon className="w-10 h-10 text-accent mb-4" strokeWidth={1.5} />
+                <p className="text-[15px] sm:text-base leading-[1.6] sm:leading-[1.65] text-text-muted">{item.text}</p>
+              </div>
             </motion.div>
           ))}
         </div>

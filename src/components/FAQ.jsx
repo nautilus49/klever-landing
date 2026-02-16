@@ -3,11 +3,22 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 const faqs = [
-  { q: 'Нужен ли смартфон для работы?', a: 'Да. Кулон связывается со смартфоном по Bluetooth и через приложение отправляет сигнал и геолокацию выбранным контактам. Смартфон может лежать в кармане или сумке — главное, чтобы Bluetooth был включён.' },
-  { q: 'Как часто нужно заряжать?', a: 'Примерно раз в год. Встроенная батарея рассчитана на 12 месяцев автономной работы при обычном использовании. Когда заряд заканчивается, кулон и приложение заранее предупредят.' },
-  { q: 'Кто получит сигнал SOS?', a: 'Вы сами выбираете контакты в приложении — родственники, друзья, партнёр. Они получат push-уведомление и сообщение в Telegram (если подключили) с вашей геолокацией.' },
-  { q: 'Кулон заметен?', a: 'Нет. Дизайн разработан так, чтобы кулон выглядел как обычное украшение. Нажатие кнопки выглядит как поправка кулона — окружающие не поймут, что вы вызываете помощь.' },
-  { q: 'Есть ли доставка по России?', a: 'Да, доставляем по всей России. Сроки зависят от региона. После оформления заказа мы вышлем трек-номер для отслеживания.' },
+  {
+    q: 'Нужен ли смартфон для работы?',
+    a: 'Да. Кулон связывается со смартфоном по Bluetooth и через приложение отправляет сигнал и геолокацию выбранным контактам. Смартфон может лежать в кармане или сумке — главное, чтобы Bluetooth был включён.',
+  },
+  {
+    q: 'Кто получит сигнал SOS?',
+    a: 'Вы сами выбираете контакты в приложении — родственники, друзья, партнёр. Они получат push-уведомление и сообщение в Telegram (если подключили) с вашей геолокацией.',
+  },
+  {
+    q: 'Кулон заметен?',
+    a: 'Нет. Дизайн разработан так, чтобы кулон выглядел как обычное украшение. Нажатие кнопки выглядит как поправка кулона — окружающие не поймут, что вы вызываете помощь.',
+  },
+  {
+    q: 'Есть ли доставка по России?',
+    a: 'Да, доставляем по всей России. Сроки зависят от региона. После оформления заказа мы вышлем трек-номер для отслеживания.',
+  },
 ]
 
 export default function FAQ() {
@@ -21,19 +32,10 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-2xl sm:text-3xl font-semibold text-center text-text mb-4 font-display"
+          className="text-[24px] leading-[1.3] sm:text-2xl sm:leading-[1.35] lg:text-3xl lg:leading-[1.3] font-semibold text-center text-text mb-4 font-display"
         >
           Частые вопросы
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-text-muted text-center mb-12"
-        >
-          Ответы на то, что обычно спрашивают
-        </motion.p>
 
         <div className="space-y-2">
           {faqs.map((item, i) => (
@@ -49,7 +51,7 @@ export default function FAQ() {
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left text-text hover:bg-accent/5 transition-colors"
               >
-                <span className="font-medium text-sm sm:text-base">{item.q}</span>
+                <span className="font-medium text-[14px] leading-[1.5] sm:text-sm sm:leading-[1.6] lg:text-base lg:leading-[1.65]">{item.q}</span>
                 <ChevronDown
                   className={`w-5 h-5 text-accent shrink-0 transition-transform duration-200 ${
                     openIndex === i ? 'rotate-180' : ''
@@ -66,7 +68,7 @@ export default function FAQ() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden border-t border-border"
                   >
-                    <p className="px-5 py-4 text-text-muted text-sm leading-relaxed">{item.a}</p>
+                    <p className="px-5 py-4 text-text-muted text-[13px] leading-[1.65] sm:text-sm sm:leading-relaxed">{item.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
