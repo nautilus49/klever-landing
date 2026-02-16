@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Loader2 } from 'lucide-react'
+import { Loader2, AlertCircle } from 'lucide-react'
+import { submitOrder, checkAvailability } from '../services/api'
 
 export default function OrderModal({ isOpen, onClose }) {
   const [name, setName] = useState('')
   const [contact, setContact] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
   const [isChecking, setIsChecking] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState(null)
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
@@ -14,25 +17,47 @@ export default function OrderModal({ isOpen, onClose }) {
       setIsChecking(true)
       setShowForm(false)
       setIsSuccess(false)
-      // Симуляция проверки наличия на сервере
-      setTimeout(() => {
-        setIsChecking(false)
-        setShowForm(true)
-      }, 1500)
+      setError(null)
+      // Проверка наличия на сервере
+      checkAvailability()
+        .then((available) => {
+          setIsChecking(false)
+          // Если товар распродан, показываем форму для сбора контактов
+          if (!available) {
+            setShowForm(true)
+          } else {
+            // Если товар есть в наличии, можно показать другую форму или закрыть модалку
+            setShowForm(true)
+          }
+        })
+        .catch(() => {
+          // При ошибке показываем форму (считаем что товар распродан)
+          setIsChecking(false)
+          setShowForm(true)
+        })
     }
   }, [isOpen])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log({ name, contact })
-    setIsSuccess(true)
-    setTimeout(() => {
-      onClose()
-      setName('')
-      setContact('')
-      setIsSuccess(false)
-      setShowForm(false)
-    }, 2000)
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      await submitOrder({ name, contact })
+      setIsSuccess(true)
+      setTimeout(() => {
+        onClose()
+        setName('')
+        setContact('')
+        setIsSuccess(false)
+        setShowForm(false)
+        setIsSubmitting(false)
+      }, 2000)
+    } catch (err) {
+      setError(err.message || 'Произошла ошибка при отправке данных')
+      setIsSubmitting(false)
+    }
   }
 
   const handleBackdropClick = (e) => {
@@ -89,13 +114,24 @@ export default function OrderModal({ isOpen, onClose }) {
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-sm"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{error}</span>
+                    </motion.div>
+                  )}
                   <input
                     type="text"
                     placeholder="Имя"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   <input
                     type="text"
@@ -103,13 +139,22 @@ export default function OrderModal({ isOpen, onClose }) {
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 rounded-xl bg-bg border border-border text-text placeholder-text-muted/60 focus:outline-none focus:border-accent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-xl bg-accent text-white font-medium hover:bg-accent-muted transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full py-3 rounded-xl bg-accent text-white font-medium hover:bg-accent-muted transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    Встать в очередь
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Отправка...
+                      </>
+                    ) : (
+                      'Встать в очередь'
+                    )}
                   </button>
                 </form>
               </>
