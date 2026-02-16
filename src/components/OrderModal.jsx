@@ -44,7 +44,8 @@ export default function OrderModal({ isOpen, onClose }) {
     setError(null)
 
     try {
-      await submitOrder({ name, contact })
+      const response = await submitOrder({ name, contact })
+      // Проверяем успешный ответ (response.success уже проверен в api.js)
       setIsSuccess(true)
       setTimeout(() => {
         onClose()
@@ -55,6 +56,7 @@ export default function OrderModal({ isOpen, onClose }) {
         setIsSubmitting(false)
       }, 2000)
     } catch (err) {
+      // Ошибка уже обработана в api.js и содержит message
       setError(err.message || 'Произошла ошибка при отправке данных')
       setIsSubmitting(false)
     }

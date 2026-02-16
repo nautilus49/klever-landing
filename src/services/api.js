@@ -1,6 +1,6 @@
 // Утилита для работы с API
 // URL API endpoint (можно переопределить через переменную окружения)
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/klever'
 
 /**
  * Отправка данных заказа на сервер
@@ -21,12 +21,17 @@ export async function submitOrder(data) {
       }),
     })
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ message: 'Ошибка сервера' }))
-      throw new Error(errorData.message || `Ошибка ${response.status}`)
+    const responseData = await response.json().catch(() => ({ 
+      success: false, 
+      message: 'Ошибка сервера' 
+    }))
+
+    // Проверяем поле success в ответе
+    if (!response.ok || !responseData.success) {
+      throw new Error(responseData.message || `Ошибка ${response.status}`)
     }
 
-    return await response.json()
+    return responseData
   } catch (error) {
     // Если это ошибка сети или сервера
     if (error instanceof TypeError) {
