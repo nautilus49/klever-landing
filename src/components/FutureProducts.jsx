@@ -98,8 +98,12 @@ export default function FutureProducts() {
                 </div>
                 <p className="text-[15px] sm:text-sm font-medium text-text mb-2">{items[0].label}</p>
                 <p className="text-[14px] sm:text-xs text-text-muted leading-[1.6] sm:leading-relaxed mb-4 flex-grow">{items[0].desc}</p>
-                <div className="mt-4 h-20 rounded-xl bg-gradient-to-br from-accent/20 via-accent-muted/15 to-transparent blur-xl opacity-60 dark:opacity-50 flex items-center justify-center mb-4">
-                  <KeyRound className="w-8 h-8 text-accent/40" strokeWidth={1.5} />
+                <div className="mt-4 h-32 rounded-xl overflow-hidden relative bg-gradient-to-br from-accent/15 via-accent-muted/10 to-surface/50 mb-4 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent-muted/15 to-transparent blur-2xl opacity-70" />
+                  <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-accent/30 via-accent-muted/20 to-accent/10 blur-md opacity-80 flex items-center justify-center">
+                    <KeyRound className="w-10 h-10 text-accent/50 blur-sm" strokeWidth={1.5} />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent" />
                 </div>
                 <motion.button
                   onClick={() => openModal(items[0].label)}
@@ -124,8 +128,12 @@ export default function FutureProducts() {
                 </div>
                 <p className="text-[15px] sm:text-sm font-medium text-text mb-2">{items[1].label}</p>
                 <p className="text-[14px] sm:text-xs text-text-muted leading-[1.6] sm:leading-relaxed mb-4 flex-grow">{items[1].desc}</p>
-                <div className="mt-4 h-20 rounded-xl bg-gradient-to-br from-accent-muted/20 via-accent/15 to-transparent blur-xl opacity-60 dark:opacity-50 flex items-center justify-center mb-4">
-                  <LinkIcon className="w-8 h-8 text-accent/40" strokeWidth={1.5} />
+                <div className="mt-4 h-32 rounded-xl overflow-hidden relative bg-gradient-to-br from-accent-muted/15 via-accent/10 to-surface/50 mb-4 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent-muted/20 via-accent/15 to-transparent blur-2xl opacity-70" />
+                  <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-accent-muted/30 via-accent/20 to-accent-muted/10 blur-md opacity-80 flex items-center justify-center">
+                    <LinkIcon className="w-10 h-10 text-accent/50 blur-sm" strokeWidth={1.5} />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent" />
                 </div>
                 <motion.button
                   onClick={() => openModal(items[1].label)}

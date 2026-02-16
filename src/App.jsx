@@ -17,37 +17,35 @@ import OrderModal from './components/OrderModal'
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [theme, setTheme] = useState('light')
 
   useEffect(() => {
-    const stored = window.localStorage.getItem('klever-theme')
-    if (stored === 'light' || stored === 'dark') {
-      setTheme(stored)
-      document.documentElement.dataset.theme = stored
-      return
+    const updateTheme = () => {
+      const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches
+      const theme = prefersDark ? 'dark' : 'light'
+      document.documentElement.dataset.theme = theme
     }
 
-    const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches
-    const initial = prefersDark ? 'dark' : 'light'
-    setTheme(initial)
-    document.documentElement.dataset.theme = initial
-  }, [])
+    // Устанавливаем начальную тему
+    updateTheme()
 
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      const next = prev === 'dark' ? 'light' : 'dark'
-      document.documentElement.dataset.theme = next
-      window.localStorage.setItem('klever-theme', next)
-      return next
-    })
-  }
+    // Слушаем изменения системной темы
+    const mediaQuery = window.matchMedia?.('(prefers-color-scheme: dark)')
+    if (mediaQuery?.addEventListener) {
+      mediaQuery.addEventListener('change', updateTheme)
+      return () => mediaQuery.removeEventListener('change', updateTheme)
+    } else if (mediaQuery?.addListener) {
+      // Для старых браузеров
+      mediaQuery.addListener(updateTheme)
+      return () => mediaQuery.removeListener(updateTheme)
+    }
+  }, [])
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
   return (
     <>
-      <Navbar onOrder={openModal} theme={theme} onToggleTheme={toggleTheme} />
+      <Navbar onOrder={openModal} />
       <main>
         <Hero onOrder={openModal} />
         <LifestyleSection />
