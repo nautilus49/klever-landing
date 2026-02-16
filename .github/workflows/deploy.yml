@@ -28,9 +28,32 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 700 ~/.ssh
+          # Сохраняем ключ (GitHub секреты могут иметь лишние пробелы - убираем их)
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts || true
+          # Проверка формата ключа
+          if ! head -1 ~/.ssh/deploy_key | grep -q "BEGIN"; then
+            echo "ERROR: Invalid key format"
+            echo "First 50 chars: $(head -c 50 ~/.ssh/deploy_key)"
+            exit 1
+          fi
+          if ! tail -1 ~/.ssh/deploy_key | grep -q "END"; then
+            echo "ERROR: Key missing END marker"
+            exit 1
+          fi
+          # Проверка размера (должен быть ~400-500 байт для ed25519)
+          KEY_SIZE=$(wc -c < ~/.ssh/deploy_key)
+          if [ $KEY_SIZE -lt 200 ]; then
+            echo "ERROR: Key too short ($KEY_SIZE bytes)"
+            exit 1
+          fi
+          echo "Key size: $KEY_SIZE bytes"
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+          # Тестовое подключение
+          ssh -v -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            'echo "SSH connection test successful"' || (echo "SSH test failed" && exit 1)
 
       - name: Deploy to server
         run: |
