@@ -22,7 +22,7 @@ jobs:
       - name: Install system dependencies for image optimization
         run: |
           sudo apt-get update
-          sudo apt-get install -y libpng-dev libjpeg-dev pngquant mozjpeg-tools
+          sudo apt-get install -y libpng-dev libjpeg-dev build-essential nasm
 
       - name: Install dependencies
         run: npm ci
