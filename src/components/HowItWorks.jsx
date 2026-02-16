@@ -1,26 +1,52 @@
 import { motion } from 'framer-motion'
-import { CircleDot, Send, Bell } from 'lucide-react'
+import { CircleDot, Send, Bell, ArrowRight } from 'lucide-react'
 
 const steps = [
   {
     icon: CircleDot,
     num: '01',
-    title: 'Нажми на кулон',
-    desc: 'Незаметное нажатие — окружающие не поймут, что вы вызываете помощь. Выглядит как поправка украшения.',
+    title: 'Нажмите на кулон',
+    desc: 'Выглядит как поправка украшения. Никто не заметит.',
   },
   {
     icon: Send,
     num: '02',
-    title: 'Сигнал SOS',
-    desc: 'Мгновенная отправка через Bluetooth на ваш смартфон. Работает даже в кармане или сумке.',
+    title: 'Кулон шлёт команду на телефон',
+    desc: 'Через Bluetooth — телефон может быть в сумке или кармане.',
   },
   {
     icon: Bell,
     num: '03',
-    title: 'Близкие знают',
-    desc: 'Выбранные контакты получают уведомление в Telegram с геолокацией. Они знают, где вы и что нужна помощь.',
+    title: 'Телефон рассылает близким',
+    desc: 'Сообщение в Telegram с вашим местоположением.',
   },
 ]
+
+const stepVariants = {
+  hidden: { opacity: 0, x: -24, scale: 0.96 },
+  visible: (i) => ({
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+}
+
+const connectorVariants = {
+  hidden: { opacity: 0 },
+  visible: (i) => ({
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      delay: i * 0.5 + 0.35,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+}
 
 export default function HowItWorks() {
   return (
@@ -40,7 +66,7 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-text-muted text-center max-w-lg mx-auto mb-14 text-[14px] leading-[1.65] sm:text-sm sm:leading-[1.7]"
+          className="text-text-muted text-center max-w-lg mx-auto mb-4 text-[14px] sm:text-sm sm:leading-[1.7]"
         >
           Три шага — и близкие знают, что нужна помощь
         </motion.p>
@@ -59,35 +85,54 @@ export default function HowItWorks() {
           />
         </motion.div>
 
-        <div className="flex flex-col md:flex-row gap-8 lg:gap-10 items-stretch">
-          {steps.map((step, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group relative overflow-hidden flex-1 flex flex-col p-8 sm:p-10 rounded-3xl border border-border/80 bg-gradient-to-br from-surface via-surface to-accent/5 shadow-lg shadow-black/5 dark:shadow-black/40 transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 hover:shadow-xl"
-            >
-              <div
-                className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-gradient-to-br from-accent/10 via-transparent to-accent-muted/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              />
-              <div className="relative flex-1 flex flex-col">
-                <span className="text-[13px] sm:text-xs text-accent/80 tracking-widest mb-5 block font-medium">
-                  {step.num}
-                </span>
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-accent/15 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors duration-300">
-                  <step.icon className="w-7 h-7 sm:w-8 sm:h-8 text-accent" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-[17px] sm:text-lg lg:text-xl font-medium text-text mb-3 font-display leading-[1.35]">
+        <div className="relative md:flex md:items-stretch">
+          {/* Vertical timeline line (mobile) */}
+          <div className="absolute left-6 top-8 bottom-8 w-px bg-gradient-to-b from-accent/30 via-accent/20 to-transparent md:hidden" aria-hidden />
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative flex flex-col md:flex-row md:flex-1 gap-6 md:gap-0"
+          >
+            {steps.map((step, i) => (
+              <div key={i} className="relative flex flex-col md:flex-1 md:flex-row md:items-stretch md:min-w-0 pl-14 md:pl-0">
+                {/* Step dot (mobile) */}
+                <div
+                  className="absolute left-4 top-8 w-4 h-4 rounded-full border-2 border-accent/50 bg-surface md:hidden"
+                  aria-hidden
+                />
+                <motion.div
+                  custom={i}
+                  variants={stepVariants}
+                  className="group relative overflow-hidden flex flex-col p-6 sm:p-8 rounded-2xl border border-border/80 bg-gradient-to-br from-surface via-surface to-accent/5 shadow-lg shadow-black/5 dark:shadow-black/40 transition-all duration-300 hover:border-accent/40 hover:shadow-xl flex-1"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/15 shrink-0">
+                      <step.icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
+                    </div>
+                    <span className="text-xs text-accent/80 tracking-widest font-medium">{step.num}</span>
+                  </div>
+                <h3 className="text-lg sm:text-xl font-medium text-text mb-2 font-display">
                   {step.title}
                 </h3>
-                <p className="text-[14px] sm:text-base leading-[1.65] sm:leading-[1.7] text-text-muted flex-grow">
+                <p className="text-sm sm:text-base leading-relaxed text-text-muted">
                   {step.desc}
                 </p>
+              </motion.div>
+
+              {i < steps.length - 1 && (
+                <motion.div
+                  custom={i}
+                  variants={connectorVariants}
+                  className="hidden md:flex items-center justify-center flex-shrink-0 px-2 lg:px-4"
+                >
+                  <ArrowRight className="w-6 h-6 text-accent/50" strokeWidth={2} />
+                </motion.div>
+              )}
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

@@ -30,13 +30,29 @@ export default function ProductShowcase({ onOrder }) {
           />
           <div className="relative flex flex-col lg:flex-row gap-10 items-center">
             <div className="shrink-0">
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border border-border/80 bg-gradient-to-br from-surface to-accent/5 shadow-xl">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border border-border/80 bg-gradient-to-br from-surface to-accent/5 shadow-xl"
+              >
                 <img
                   src={`${import.meta.env.BASE_URL}images/klever_with_bg.png`}
                   alt="Кулон Клевер"
                   className="w-full h-full object-contain p-2"
                 />
-              </div>
+                <motion.div
+                  initial={{ x: '-100%' }}
+                  whileInView={{ x: '100%' }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-y-0 left-0 w-[60%] pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)',
+                  }}
+                />
+              </motion.div>
             </div>
 
             <div className="flex-1 text-center lg:text-left">
@@ -50,9 +66,9 @@ export default function ProductShowcase({ onOrder }) {
               <p className="text-text font-medium mb-3 text-[14px] sm:text-sm leading-[1.5]">В комплекте:</p>
               <ul className="space-y-2.5 mb-7">
                 {includes.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-[14px] sm:text-sm leading-[1.6] sm:leading-[1.65] text-text-muted">
-                    <Check className="w-4 h-4 text-accent shrink-0" strokeWidth={2.5} />
-                    <span>{item}</span>
+                  <li key={i} className="flex items-start gap-3 text-[14px] sm:text-sm leading-[1.6] sm:leading-[1.65] text-text-muted">
+                    <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" strokeWidth={2.5} />
+                    <span className="flex-1 text-left">{item}</span>
                   </li>
                 ))}
               </ul>

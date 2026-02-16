@@ -1,15 +1,18 @@
 import { motion } from 'framer-motion'
 import { Shield, Clock } from 'lucide-react'
 
+const headlineWords = [['Клевер', '—', 'стиль'], ['и', 'безопасность']]
+
 export default function Hero({ onOrder }) {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-20 bg-bg overflow-hidden">
       <div
-        className="pointer-events-none absolute inset-x-[-200px] -top-40 h-72 bg-gradient-to-br from-accent/15 via-transparent to-accent-muted/10 blur-3xl"
+        className="pointer-events-none absolute inset-x-[-200px] -top-40 h-72 bg-gradient-to-br from-accent/15 via-transparent to-accent-muted/10 blur-3xl animate-[blob-breathe_12s_ease-in-out_infinite]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute inset-x-[-120px] bottom-[-160px] h-80 bg-gradient-to-tr from-black/5 via-transparent to-accent/10 dark:from-white/5 dark:to-accent/20 blur-3xl"
+        className="pointer-events-none absolute inset-x-[-120px] bottom-[-160px] h-80 bg-gradient-to-tr from-black/5 via-transparent to-accent/10 dark:from-white/5 dark:to-accent/20 blur-3xl animate-[blob-breathe_18s_ease-in-out_infinite]"
+        style={{ animationDelay: '-4s' }}
         aria-hidden="true"
       />
 
@@ -28,9 +31,27 @@ export default function Hero({ onOrder }) {
           Российский стартап · первая партия
         </motion.p>
 
-        <h1 className="mt-5 text-[28px] leading-[1.15] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[52px] lg:leading-[1.1] font-semibold text-text font-display tracking-tight">
-          Клевер — стиль
-          <br className="hidden sm:inline" /> и безопасность
+        <h1 className="mt-5 text-[28px] leading-[1.15] sm:text-4xl sm:leading-[1.2] md:text-5xl md:leading-[1.15] lg:text-[52px] lg:leading-[1.1] font-semibold text-text font-display tracking-tight text-center">
+          {headlineWords.map((line, li) => (
+            <span key={li} className="block sm:inline">
+              {li === 1 && <br className="hidden sm:inline" />}
+              {line.map((word, wi) => (
+                <motion.span
+                  key={`${li}-${wi}`}
+                  initial={{ y: '1em', opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.2 + li * 0.1 + wi * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="inline-block overflow-hidden align-bottom"
+                >
+                  <span className="block">{word}{wi < line.length - 1 ? '\u00A0' : ''}</span>
+                </motion.span>
+              ))}
+            </span>
+          ))}
         </h1>
 
         <motion.p
@@ -43,9 +64,9 @@ export default function Hero({ onOrder }) {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          initial={{ opacity: 0, scale: 0.92, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25, type: 'spring', stiffness: 120, damping: 18 }}
+          transition={{ duration: 1, delay: 0.35, type: 'spring', stiffness: 80, damping: 16 }}
           className="relative w-52 h-52 sm:w-64 sm:h-64 mx-auto mt-10 mb-10"
         >
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/45 via-accent-muted/20 to-transparent blur-3xl opacity-80 dark:from-accent/55 dark:via-accent-muted/30" />
