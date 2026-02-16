@@ -22,7 +22,7 @@ export default function FinalCTA({ onOrder }) {
           whileTap={{ scale: 0.98 }}
           className="px-8 py-4 rounded-full border border-accent text-accent font-medium text-lg hover:bg-accent hover:text-white transition-all duration-300 ease-out"
         >
-          Оформить предзаказ
+          Купить
         </motion.button>
       </motion.div>
     </section>
